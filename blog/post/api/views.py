@@ -6,6 +6,7 @@ from rest_framework.permissions import (
     IsAdminUser
 )
 from .permissions import IsOwner
+from .paginations import PostPagination
 #from rest_framework.filters import SearchFilter,OrderingFilter
 
 
@@ -14,7 +15,7 @@ class PostListAPIView(ListAPIView):
     serializer_class = PostSerializer
 
     filter_backends = [SearchFilter,OrderingFilter]
-    search_fields = ['title'] http://example.com/api/users?search=russell&ordering=title  --> returns objects that title includes russel, order by title
+    search_fields = ['title'] http://127.0.0.1:8000/api/post/list?search=blog&ordering=title  --> returns objects that title includes 'blog', order by title
 
 
     def get_queryset(self):
@@ -26,6 +27,7 @@ class PostListAPIView(ListAPIView):
 class PostListAPIView(ListAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    pagination_class = PostPagination   # http://127.0.0.1:8000/api/post/list?page=2
 
 class PostDetailAPIView(RetrieveAPIView):
     queryset = Post.objects.all()
