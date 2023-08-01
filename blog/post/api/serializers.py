@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from post.models import Post
+from comment.api.serializers import CommentPostListSerializer
 
 class PostSerializer(serializers.ModelSerializer):
 
@@ -9,10 +10,12 @@ class PostSerializer(serializers.ModelSerializer):
     )
 
     username = serializers.SerializerMethodField(method_name='username_new')
+    post_comment = CommentPostListSerializer(many=True,read_only=True)
 
     class Meta: 
         model = Post
         fields = [ 
+            'id',
             'username',
             'title',
             'content',
@@ -20,6 +23,7 @@ class PostSerializer(serializers.ModelSerializer):
             'created',
             'image',
             'modified_by',
+            'post_comment',
         ]
     
     def username_new(self, obj):

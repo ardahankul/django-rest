@@ -6,7 +6,7 @@ from .views import PostListAPIView,PostDetailAPIView,PostDeleteAPIView,PostUpdat
 app_name = "post"
 
 urlpatterns = [
-    path('list', PostListAPIView.as_view(), name='list'),
+    path('list/', PostListAPIView.as_view(), name='list'),
     path('detail/<slug>', PostDetailAPIView.as_view(), name='detail'),
     path('delete/<slug>', PostDeleteAPIView.as_view(), name='delete'),
     path('update/<slug>', PostUpdateAPIView.as_view(), name='update'),
