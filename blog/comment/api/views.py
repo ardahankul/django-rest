@@ -10,6 +10,7 @@ class CommentCreateAPIView(CreateAPIView):
 
 class CommentListAPIView(ListAPIView):
     serializer_class = CommentListSerializer
+    #TODO : add pagination!!!
 
     def get_queryset(self):
         queryset = Comment.objects.filter(parent = None) 
