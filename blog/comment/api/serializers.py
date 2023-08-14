@@ -29,6 +29,9 @@ class PostCommentSerializer(ModelSerializer):
         fields = ['id','title','slug',]
 
 class CommentPostListSerializer(ModelSerializer):   #this is the serializer to get comments while getting posts
+    
+    user = UserCommentSerializer()
+    
     class Meta:
         model = Comment
         fields = '__all__'
